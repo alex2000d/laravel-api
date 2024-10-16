@@ -11,8 +11,25 @@ class ProjectController extends Controller
     public function index(){
          $projects = Project::all();
          return response()->json([
-            'secces' => true,
+            'success' => true,
             'results' => $projects
          ]);
     }
+
+    public function show($slug){
+        // recuperiamo il progetto avente un determinato slug
+        $project = Project::with('types', 'technologies')->where('slug', $slug)->get();
+
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                'result' => $projects
+             ]);
+        }
+        return response()->json([
+            'success' => false,
+
+        ]);
+       
+   }
 }
