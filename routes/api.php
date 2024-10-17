@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProjectController as ProjectController;
+use App\Http\Controllers\Api\LeadController as LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('single_project');
+Route::post('/contacts', [LeadController::class, 'store'])->name('send_email');
