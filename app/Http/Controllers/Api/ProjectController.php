@@ -18,12 +18,12 @@ class ProjectController extends Controller
 
     public function show($slug){
         // recuperiamo il progetto avente un determinato slug
-        $project = Project::with('types', 'technologies')->where('slug', $slug)->first();
+        $project = Project::with('type', 'technologies')->where('slug', $slug)->first();
 
         if ($project) {
             return response()->json([
                 'success' => true,
-                'result' => $projects
+                'result' => $project
              ]);
         }
         return response()->json([
